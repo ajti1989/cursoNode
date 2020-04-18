@@ -1,34 +1,21 @@
-import readline from 'readline'
+//socket comunicacion servidor-cliente cliente-servidor
+//SERVIDOR
+import net from 'net'
 
-import async from './async'
-import events from './events'
-
-const file = process.argv[2]
-
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
+const server = net.createServer(socket => {
+    socket.on('data',data => {
+        console.log(data.toString())
+        socket.write('mundo?')
+    })
 })
 
-rl.question(
-    `Como quiere leer el fichero?
-    1. De forma asincrona (default)
-    2. Con eventos
-    Seleccione una opcion: `,
-    value => {
-        console.log(`Ha seleccionado el valor ${value}\n\n`)
+server.on('error',() => console.log('un error'))
 
-        switch (value){
-            case '2':
-                events(file)
-                break;
-            case '1':
-                default:
-                    async(file)
-        }
-
-        rl.close()
-    }
-
-
+server.listen({
+    host:'localhost',
+    port: '8000',
+    exclusive: true
+},
+    () => console.log(`Servidor socket abierto en ${server.address()}`)
 )
+
