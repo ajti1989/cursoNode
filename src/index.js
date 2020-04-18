@@ -1,16 +1,25 @@
 import http, { request } from 'http'
+import fs from 'fs'
+
+const file = './src/index.html'
 
 const server = http.createServer((request, response) => {
-    if(request.method === 'GET'){
-        response.write('<h1>Metodo no permitido</h1>')
+    response.writeHead(200, { 'Content-Type': 'text/html charset=UTF-8' })
+
+
+    fs.readFile(file, (err, content) => {
+        if (err) {
+            return console.log(err)
+        }
+
+        response.write(content)
         response.end()
-    }
-    response.write('<h1>estás accediendo a un servidor</h1>')
-        response.end()
+    })
+
 })
 
 server.listen(8000, 'localhost', err => {
-    if (err){
+    if (err) {
         return console.log('Error: ', err)
     }
 
