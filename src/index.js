@@ -25,11 +25,26 @@ app.set('view engine', 'pug')
 
 //enrutado
 app.get('/', (req, res) =>{
-    res.render('home', {
-       title: 'Curso NodeJS',
-       message: 'Estoy realizando el curso' 
-    })
+    res.write(`
+        <h1>Curso</h1>
+        <a href = '/temario'>Temario</a>
+    `)
+    res.end()
 })
+
+app.get('/temario', (req, res) => {
+    res.write(`
+    <h1>Temario</h1>
+    <ul>
+        <li>NodeJS</li>
+        <li>Angular</li>
+    </ul>
+    <a href='/'>volver</a>
+    `)  
+    res.end()
+})
+
+
 
 //server lanzado en el puerto 9000
 app.listen('9000', () => {
