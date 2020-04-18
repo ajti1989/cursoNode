@@ -1,21 +1,13 @@
-//socket comunicacion servidor-cliente cliente-servidor
-//SERVIDOR
-import net from 'net'
 
-const server = net.createServer(socket => {
-    socket.on('data',data => {
-        console.log(data.toString())
-        socket.write('mundo?')
-    })
+//Capturar errores, hay mas acciones
+process.on('unhandledRejection', (err,p) =>{
+    console.log(`Custom unhandledRejection ${err}`)
 })
 
-server.on('error',() => console.log('un error'))
 
-server.listen({
-    host:'localhost',
-    port: '8000',
-    exclusive: true
-},
-    () => console.log(`Servidor socket abierto en ${server.address()}`)
-)
+process.on('uncaughtException', (err) => {
+    console.log(`Custom uncaughtException ${err}`)
+})
+// Promise(resolve => JSON.parse({color: 'blue'}))
 
+throw 'mi error'
