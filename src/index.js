@@ -1,17 +1,20 @@
 import fs from 'fs'
-import readline from 'readline'
 
 const file = process.argv[2]
-let lines = 0
 
-const rl = readline.createInterface({
-    input: fs.createReadStream(file),
-    crlfDelay: Infinity
+//al no ser asincrono hasta que no termina no se muestra, por esa razón se ejecuta antes la última linea de código
+fs.readFile(file, (err, contents) =>{
+    if(err){
+        return console.log(err)
+    }
+
+    const lines = contents.toString().split('\n')
+
+    for(let line of lines){
+        console.log(`Número de caracteres por linea: ${line.length}`)
+    }
+
+    console.log(`Número de elementos que : ${lines.length}`)
 })
 
-rl.on('line', line=> {
-    ++lines
-    console.log(`Numero total de caracgeres por lilnea: ${line.length}`)
-})
-
-rl.on('close', () => console.log(`Numero total de lineas: ${lines}`))
+console.log(`Se está leyendo el fichero: ${file}`)
