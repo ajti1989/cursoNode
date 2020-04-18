@@ -1,0 +1,29 @@
+{
+  "name": "curso_node",
+  "version": "1.0.0",
+  "description": "curso node openwebinars",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "startbabel": "node --require babel-register src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajti1989/cursoNode.git"
+  },
+  "author": "Antonio Toledo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajti1989/cursoNode/issues"
+  },
+  "homepage": "https://github.com/ajti1989/cursoNode#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0"
+  }
+}
