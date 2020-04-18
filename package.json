@@ -4,8 +4,7 @@
   "description": "curso node openwebinars",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "startbabel": "node --require babel-register src/index.js"
+    "start": "node --require babel-register src/index.js"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,17 @@
-const value = 24
+import fs from 'fs'
+import readline from 'readline'
 
-const miFn = num => value * 10
+const file = process.argv[2]
+let lines = 0
 
-console.log(miFn(value))
+const rl = readline.createInterface({
+    input: fs.createReadStream(file),
+    crlfDelay: Infinity
+})
+
+rl.on('line', line=> {
+    ++lines
+    console.log(`Numero total de caracgeres por lilnea: ${line.length}`)
+})
+
+rl.on('close', () => console.log(`Numero total de lineas: ${lines}`))
