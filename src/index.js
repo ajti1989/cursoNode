@@ -1,27 +1,28 @@
-import http, { request } from 'http'
-import fs from 'fs'
+import path from 'path'
+import express from 'express'
+import morgan from 'morgan'
+import bodyParser from 'body-parser'
 
-const file = './src/index.html'
+const app = express()
+app.disable('x-powered-by')
 
-const server = http.createServer((request, response) => {
-    response.writeHead(200, { 'Content-Type': 'text/html charset=UTF-8' })
+app.set('env', 'development')
 
+//middleware morgan
+app.use(morgan('tiny'))
 
-    fs.readFile(file, (err, content) => {
-        if (err) {
-            return console.log(err)
-        }
+//middleware body-parser
+//parsea a json todo los que llega por una petición post
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
-        response.write(content)
-        response.end()
-    })
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'pug')
 
+app.get('/', (req, res) =>{
+    res.end('Hola mundo')
 })
 
-server.listen(8000, 'localhost', err => {
-    if (err) {
-        return console.log('Error: ', err)
-    }
-
-    console.log('Server abierto en http://LOCALHOST:8000')
+app.listen('9000', () => {
+    console.log('Servidor en marcha (Port:9000)')
 })
