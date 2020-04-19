@@ -2,6 +2,7 @@ import path from 'path'
 import express from 'express'
 import logger from 'morgan'
 import bodyParser from 'body-parser'
+import router from './router'
 
 const app = express()
 
@@ -24,29 +25,14 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
 //enrutado
-app.get('/', (req, res) =>{
-    res.render('home',{
-        title: 'Página de temarios',
-        message: 'Pincha el enlace para continuar'
-    })
-    res.end()
-})
 
-app.get('/temario', (req, res) => {
-    res.render('temario',{
-        temarios: ["ciencias","matemáticas", "fisica"]
-    })  
-    res.end()
-})
+router(app)
 
-//parametros get !!Cuidadin con el orden si lo pusisera encima de /temario y le paso por parametro temario, la ruta de /temario no funcionaría
-app.get('/:user', (req, res) => {
-    res.render('user',{
-        user: `Hola ${req.params.user}`
-    })
-})
 
-//middleware
+
+
+
+//middleware para error 404, se puede mejorar
 app.use((req,res,next) => {
     res.render('404',{
         title: 'Error-404',
