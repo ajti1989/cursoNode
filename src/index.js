@@ -39,6 +39,13 @@ app.get('/temario', (req, res) => {
     res.end()
 })
 
+//parametros get !!Cuidadin con el orden si lo pusisera encima de /temario y le paso por parametro temario, la ruta de /temario no funcionaría
+app.get('/:user', (req, res) => {
+    res.render('user',{
+        user: `Hola ${req.params.user}`
+    })
+})
+
 //enrutar elementos estáticos
 app.use('/static', express.static(path.join(__dirname, 'public')))
 

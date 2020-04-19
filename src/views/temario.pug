@@ -1,9 +1,13 @@
 html
-    h1 Lista de temarios
-    ul
-        li Mates
-        li Ciencias
-        li Quimica
-    span Pincha el enlace para ir al inicio
-    br
-    a(href="/") ir a inicio
+    include includes/head.pug
+    body
+        include includes/header.pug
+            h1 Lista de temarios
+            ul
+                li Mates
+                li Ciencias
+                li Quimica
+            span Pincha el enlace para ir al inicio
+            br
+            a(href="/") ir a inicio
+        include includes/footer.pug

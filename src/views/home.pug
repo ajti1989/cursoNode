@@ -1,11 +1,10 @@
 html
     include includes/head.pug
-        title express, node
     body
-    include includes/header.pug
-        h1.title Mi primera página con pug
-        strong!= title
-        p!= message
-        a(href="/temario") enlace
+        include includes/header.pug
+            h1.title Mi primera página con pug
+            strong!= title
+            p!= message
+            a(href="/temario") enlace
     
     include includes/footer.pug
