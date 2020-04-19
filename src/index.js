@@ -39,7 +39,8 @@ app.get('/temario', (req, res) => {
     res.end()
 })
 
-
+//enrutar elementos estáticos
+app.use('/static', express.static(path.join(__dirname, 'public')))
 
 //server lanzado en el puerto 9000
 app.listen('9000', () => {
