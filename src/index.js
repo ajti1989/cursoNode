@@ -46,6 +46,16 @@ app.get('/:user', (req, res) => {
     })
 })
 
+//middleware
+app.use((req,res,next) => {
+    res.render('404',{
+        title: 'Error-404',
+        message: 'No existe la ruta'
+    })
+    next()
+})
+
+
 //enrutar elementos estáticos
 app.use('/static', express.static(path.join(__dirname, 'public')))
 
